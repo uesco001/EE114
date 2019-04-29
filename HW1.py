@@ -5,6 +5,9 @@ import matplotlib.pyplot as plt
 import random 
 import math
 
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Number 1 
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 def Distance(P1,P2):
      return math.sqrt( (P1.x - P2.x)**2 + (P1.y - P2.y)**2 )
@@ -14,34 +17,77 @@ class Point:
          self.x = round(random.random(),4)
          self.y = round(random.random(),4)
 
-N = 1000
+N = 100000
 X = []
 binwidth = .01
 
-#for i in range(1,N):
-#     X.append(Distance(Point(),Point()))
-
-#h = plt.hist(X,bins=np.arange(0,math.sqrt(2) + binwidth, binwidth),histtype='stepfilled')
-#plt.ylabel('probabiliy(in percengtage)',size = 50)
-#plt.xlabel('distance between two points',size = 50)
-#plt.xticks(size = 20)
-#plt.yticks(size = 20)
-#plt.title('Probability of distance')
-
-
+for i in range(1,N):
+     X.append(Distance(Point(),Point()))
+plt.figure(0)
+h = plt.hist(X,bins=np.arange(0,math.sqrt(2) + binwidth, binwidth),histtype='stepfilled')
+plt.ylabel('probabiliy(in percengtage)',size = 40)
+plt.xlabel('distance between two points',size = 40)
+plt.xticks(size = 20)
+plt.yticks(size = 20)
+plt.title('Probability of distance',size =20)
 
 
-
-# this is part two of one
+# *************** part two of one*************
+plt.figure(1)
 Pn = []
 cnt = 0
 
-for i in range(1,N):
-     for j in range(1,i):
-          if(Distance(Point(),Point()) > .5):
-               cnt = cnt + 1
-     Pn.append(float(cnt)/i)
-     cnt = 0
-plt.plot(Pn)
-plt.show()
+for i in range(0,N-1):
+     if(X[i] > .5):
+          cnt = cnt + 1
+     Pn.append(float(cnt)/(i+1))
 
+plt.plot(Pn)
+
+plt.ylabel('probabiliy',size = 40)
+plt.xlabel('N-number of trials',size = 40)
+plt.xticks(size = 20)
+plt.yticks(size = 20)
+plt.title('P(A) v N',size = 20)
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Number 2 
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+X2 = []
+for i in range(1,N):
+     P1 = Point()
+     P2 = Point()
+     P3 = Point()
+     D1 = Distance(P1,P2)
+     D2 = Distance(P2,P3)
+     D3 = Distance(P1,P3)
+     X2.append(min(D1,D2,D3))
+
+plt.figure(2)
+hist2 = plt.hist(X2,bins=np.arange(0,math.sqrt(2) + binwidth, binwidth),histtype='stepfilled')
+
+plt.ylabel('probabiliy(in percengtage)',size = 40)
+plt.xlabel('distance between two points',size = 40)
+plt.xticks(size = 20)
+plt.yticks(size = 20)
+plt.title('Probability of distance of three',size =20)
+#*********************Part 2 of #2****************
+
+plt.figure(3)
+Pn2 = []
+cnt = 0
+
+for i in range(0,N-1):
+     if(X2[i] > .5):
+          cnt = cnt + 1
+     Pn2.append(float(cnt)/(i+1))
+
+plt.plot(Pn2)
+
+plt.ylabel('probabiliy',size = 40)
+plt.xlabel('N-number of trials',size = 40)
+plt.xticks(size = 20)
+plt.yticks(size = 20)
+plt.title('P(A) v N',size = 20)
+
+plt.show()
