@@ -90,4 +90,25 @@ plt.xticks(size = 20)
 plt.yticks(size = 20)
 plt.title('P(A) v N',size = 20)
 
-plt.show()
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Number 3 
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+cnt = 0
+X_d = [[0 for i in range(N)]]
+for d in range(0,5):
+         X_d.append( [round( random.random(),4) for i in range(N) ] )
+Y_d = [[ 0 for i  in range(N) ]]
+P_d = [ [0] for i in range(5)] 
+for d in range(1,6):
+     Y_d.append(Y_d[d - 1]) 
+     for i in range(0,N-1):
+         Y_d[d][i] += X_d[d][i] 
+         if(Y_d[d][i] <= 1):
+              cnt += 1
+         P_d[d - 1].append( round(float(cnt)/(i+1),2) )
+     cnt = 0
+
+for i in range(0,5):
+     print(P_d[i][N-1])
+         
+
