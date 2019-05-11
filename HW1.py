@@ -89,7 +89,7 @@ plt.xlabel('N-number of trials',size = 40)
 plt.xticks(size = 20)
 plt.yticks(size = 20)
 plt.title('P(A) v N',size = 20)
-
+plt.show()
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Number 3 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -109,6 +109,6 @@ for d in range(1,6):
      cnt = 0
 
 for i in range(0,5):
-     print(P_d[i][N-1])
+     print("volume of smplex with dimension", i," = ", P_d[i][N-1])
          
 
