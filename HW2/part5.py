@@ -48,13 +48,3 @@ while P_success <.999:
 
 print('R must be ',R, 'so Psuccess is >= .999')
 
-count = 0
-while P_success <.9999:
-    count = 0
-    for i in range(trials):
-        count += Success(p,N,R)
-    P_success = float(count)/trials
-    P_succ_array.append(P_success)
-    R += 1
-
-print('R must be ',R, 'so Psuccess is >= .9999')
