@@ -14,7 +14,7 @@ for line in FP:
 num_rows = len(data)
 num_columns = len(data[0])
 
-
+binwidth = [1 , 10000, 1 , 100, 100, 3]
 
 age = [] 
 workclass = []
@@ -55,7 +55,7 @@ title = "Histogram of "
 ylable = "amount of "
 for i in range(len(continuous) ):
     plt.figure(i+1) 
-    plt.hist(continuous[i],histtype='stepfilled')
+    plt.hist(continuous[i],bins=range(min(continuous[i]), max(continuous[i]) + binwidth[i], binwidth[i]),histtype='stepfilled')
     if( i != 0 ):
         plt.ylabel(ylable + continuous_name[i])
     else:

@@ -9,7 +9,7 @@ def MEAN(array):
     for i in range(N):
         mean = array[i] + mean
     mean = mean / N 
-    return N
+    return mean
 
 def VAR(array, mean):
     var = 0.0

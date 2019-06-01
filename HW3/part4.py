@@ -68,15 +68,23 @@ native_countryD = [ "United-States", "Cambodia", "England", "Puerto-Rico", "Cana
 discrete = [ [workclass,workclassD] , [education, educationD] ,[marital_status, marital_statusD] ,[occupation,occupationD],[relationship, relationshipD],[race,raced],[sex,sexd],[native_country, native_countryD] ] 
 discreteD = [ "workclass", "education","marital status","occupation","relationship","race", "sex","native_country"]
 
+bar_graph= []
+for i in range(len(discreteD)):
+    bar_graph.append([ 0 for p in range(len(discrete[i][1])) ])
+
 
 
 for d in range(len(discrete)): 
-    print("CORRELATION OF",discreteD[d], "\n")
     for i in range(len(discrete[d][1])):
-        print("correlation between income and",discrete[d][1][i],"is",COR(above_50,BINARISE( discrete[d][0] , discrete[d][1][i] ))) 
+        bar_graph[d][i] = COR(above_50,BINARISE( discrete[d][0] , discrete[d][1][i] ))
 
-    print('\n')
-
-
+for i in range(len(bar_graph)):
+    plt.figure(d+1)
+    y_pos = np.arange(len( discrete[i][1]  ))
+    plt.bar(y_pos, bar_graph[i], align = 'center', alpha=0.5)
+    plt.xticks(y_pos,discrete[i][1])
+    plt.ylabel('correlation')
+    plt.title("Correlation of income and " + discreteD[i])
+    plt.show()
 
 
