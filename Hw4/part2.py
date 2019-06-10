@@ -29,41 +29,43 @@ mean = 1/2
 var = 1/12
 x1 = []
 
-for i in np.arange(-3,3,0.001):
+for i in np.arange(-3,3,0.0345):
     x1.append( math.exp(-(i**2 / 2) ) / math.sqrt(2*math.pi))
 
+
 binwidth = 0.02
-nn = [1,2,4,8]
+
+nn = [1,2,4,8,16]
 X = []
+h = []
 fx = np.linspace(-3,3,6000)
-for i in range(4):
+for i in range(5):
     X.append( Zarray(mean,var,nn[i]))
-
-X.append(Zarray(mean,var,16))
-
-q = 0
-PP = []
+    h.append(plt.hist(X[i],range=[-3,3],bins=np.arange(min(X[i]), max(X[i]) + binwidth, binwidth ), density = True))
+var1 = 0
+GCDF=[]
 for i in range(len(x1)):
-    q = q + x1[i]
-    PP.append(q)
+    var1 = var1 + x1[i]
+    GCDF.append(var)
 
 
-YY = []
-P = [[] for i in range(5)]
-N = 1000000
-for i in range(1):
-    for j in range(N):
-        y = 0
-        for k in range(N):
-            if(X[i][k] < j/N):
-                y = y +1
-        P[i].append(y/N)
-        YY.append(P[i][j] - PP[j])
-    plt.plot(YY)
-
+MCDF = []
+ZCDF = []
+var2 = 0
+for k in range(5):
+    var2 = 0
+    MCDF.append([])
+    ZCDF.append([])
+    for i in range(len(x1)):
+        var2 = var2 + h[k][0][i]
+        ZCDF[k].append(var2)
+        MCDF[k].append(var2 - GCDF[i])
+    plt.plot(MCDF[k], label='n = '+str(nn[k] ))
+plt.legend()
+plt.title('Difference of Zn CDF and Gaussian CDF')
+plt.xticks([i for i in np.arange(0,176,25)], [round(i,3) for i in np.arange(0,1.1,0.1428)])
+plt.yticks([0,10,20,30,40,50],[0,0.2,0.4,0.6,0.8,1.0])
 plt.show()
-
-
 
 
 
