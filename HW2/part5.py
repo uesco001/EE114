@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import random
 import math
 import sys
-trials = 1000
+trials = 100000
 
 ##  Generates random bits as boolean values #
 def BitGenerator(N):

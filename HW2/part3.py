@@ -90,6 +90,8 @@ plt.title('P(M = M*) as func of trials when N = 1000')
 plt.xlabel('trials')
 plt.ylabel('probability')
 
+plt.tight_layout( )
+
 plt.figure(2)
 plt.plot(N,Psuccess,marker=".")
 plt.title('P(M = M*) as func of N')
@@ -98,7 +100,6 @@ plt.xlabel('N (number of bits)')
 ax = plt.gca()
 ay = plt.gca()
 ax.set_yticks(Psuccess)
-ax.set_xticks(N)
-
+ax.set_xticks(N) 
 
 plt.show()
